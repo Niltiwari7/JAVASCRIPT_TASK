@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+        }
+    
+        div {
+          margin: 0 auto;
+          width: 50%;
+        }
+    
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+    
+        th, td {
+          padding: 8px;
+          border-bottom: 1px solid #ddd;
+          text-align: left;
+        }
+    
+        th {
+          background-color: #f2f2f2;
+        }
+    
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        select {
+          width: 100%;
+          padding: 8px;
+          margin: 5px 0;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+    
+        label {
+          margin-right: 10px;
+        }
+    
+        button[type="submit"] {
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+    
+        button[type="submit"]:hover {
+          background-color: #45a049;
+        }
+    
+        .error-message {
+          color: red;
+        }
+      </style>
+</head>
+<body>
+    <div>
+        <form id="registrationForm" action="#">
+          <table>
+            <thead>
+              <tr>
+                <th class="center" colspan="2">Registration Form</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Your form fields here -->
+    
+              <tr>
+                <td>First Name:</td>
+                <td><input type="text" id="firstName" required></td>
+              </tr>
+    
+              <tr>
+                <td>Last Name</td>
+                <td><input type="text" id="lastName"></td>
+              </tr>
+      
+              <tr>
+                <td>Email</td>
+                <td><input type="email" name="email" id="email" required></td>
+              </tr>
+              
+              <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" id="password" required></td>  
+              </tr>
+      
+              <tr>
+                <td>Reenter Password</td>
+                <td><input type="password" name="reenterPassword" id="reenterPassword" required></td>
+              </tr>
+      
+              <tr>
+                <td>Gender</td>
+                <td><label for="radio1">Male</label></td>
+                <td><input type="radio" name="gender" id="radio1"></td>
+                <td><label for="radio2">Female</label></td>
+                <td><input type="radio" name="gender" id="radio2"></td>
+              </tr>
+              <tr>
+                <td>Age</td>
+                <td><input type="number" name="age" id="age"></td>
+              </tr>
+      
+              <tr>
+                <td>Phone Number</td>
+                <td><input type="number" name="phoneNumber" id="phoneNumber"></td>
+              </tr>
+      
+              <tr>
+                <td>Address</td>
+                <td><input type="text" name="address" id="address"></td>
+              </tr>
+      
+              <tr>
+                <td>State</td>
+                <td><input type="text" name="state" id="state"></td>
+              </tr>
+      
+              <tr>
+                <td>Country</td>
+                <td>
+                  <select name="country" id="country" required>
+                    <option value="">Select your country</option>
+                    <option value="India">India</option>
+                  </select>
+                </td>
+              </tr>
+    
+              <tr>
+                <td>Language Known:</td>
+                <td>
+                  <input type="checkbox" id="englishCheckbox">
+                  <label for="englishCheckbox">English</label>
+                  <input type="checkbox" id="hindiCheckbox">
+                  <label for="hindiCheckbox">Hindi</label>
+                  <input type="checkbox" id="karnatkaCheckbox">
+                  <label for="karnatkaCheckbox">Karnatka</label>
+                  <input type="checkbox" id="teluguCheckbox">
+                  <label for="teluguCheckbox">Telugu</label>
+                </td>
+              </tr>
+              <tr>
+                 <td><input type="checkbox" id="declarationCheckbox" required>
+                    <label for="declarationCheckbox">Here I declare all the given details are true</label></td>
+              </tr>
+
+              <tr>
+                <td style="padding-left: 14rem;"> Login to <a href="https://www.ethuns.com">ethuns</a> website</td>
+              </tr>
+            </tbody>
+            
+          </table>
+          
+          <button style="display:flex; justify-content:  center;" type="submit">Register</button>
+         
+          
+        </form>
+        <p class="error-message" id="errorMessage"></p>
+      </div>
+    
+      <script>
+        const registrationForm = document.getElementById('registrationForm');
+        const errorMessage = document.getElementById('errorMessage');
+    
+        registrationForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+          const declarationCheckbox = document.getElementById('declarationCheckbox');
+          if (!declarationCheckbox.checked) {
+            errorMessage.textContent = 'Please accept the declaration.';
+            return;
+          }
+          errorMessage.textContent = 'Form submitted successfully!';
+        });
+      </script>  
+</body>
+</html>

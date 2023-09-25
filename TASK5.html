@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js-task-5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .error-message {
+            color: red;
+        }
+        .center-align {
+            text-align: center;
+        }
+        .blue-button {
+            background-color: blue;
+            color: white;
+        }
+        .container {
+            width: 60vh;
+        }
+        
+    </style>
+</head>
+<body>
+   <div class="container">
+    <form class="form" onsubmit="return validateForm()">
+        <table class="table">
+            <tr>
+                <th class="center-align" colspan="2">Registration form</th>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" id="name"> <p id="mes1" class="error-message"></p></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" id="email"><p id="mes2" class="error-message"></p></td>
+            </tr>
+            <tr>
+                <td>Website</td>
+                <td><input type="url" id="website"><p id="mes3" class="error-message"></p></td>
+            </tr>
+            <tr>
+                <td>Message</td>
+                <td><input type="text" id="message" style="height: 100px;"><p id="mes4" class="error-message"></p></td>
+            </tr>
+            <tr>
+                <td colspan="2" ><button type="submit" class="blue-button">Submit</button></td>
+            </tr>
+        </table>
+    </form>
+   </div>
+   
+   <script>
+       let name = document.querySelector("#name");
+       let mes1 = document.querySelector("#mes1");
+       let email = document.querySelector("#email");
+       let mes2 = document.querySelector("#mes2");
+       let website = document.querySelector("#website");
+       let mes3 = document.querySelector("#mes3");
+       let message = document.querySelector("#message");
+       let mes4 = document.querySelector("#mes4");
+
+       function validateForm() {
+           let isValid = true;
+
+           if (name.value == "") {
+               mes1.innerHTML = "This field is required";
+               isValid = false;
+           } else {
+               mes1.innerHTML = ""; // Clear the error message
+           }
+
+           if (email.value == "") {
+               mes2.innerHTML = "This field is required";
+               isValid = false;
+           } else {
+               mes2.innerHTML = ""; // Clear the error message
+           }
+
+           if (website.value == "") {
+               mes3.innerHTML = "This field is required";
+               isValid = false;
+           } else {
+               mes3.innerHTML = ""; // Clear the error message
+           }
+
+           if (message.value == "") {
+               mes4.innerHTML = "This field is required";
+               isValid = false;
+           } else {
+               mes4.innerHTML = ""; // Clear the error message
+           }
+
+           return isValid; // Allow form submission if isValid is true
+       }
+   </script>
+</body>
+</html>

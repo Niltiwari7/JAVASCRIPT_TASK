@@ -775,3 +775,531 @@ user.greetings(); // Hello
 ✅ Modify object properties **directly**.  
 ✅ Use **`Object.keys()`, `Object.values()`, and `Object.entries()`** to extract information.  
 ✅ Add **functions** inside objects to define **methods**.  
+
+--------------------------------------------------------------------------
+Js - 18
+---
+
+## **Object Destructuring in JavaScript**
+
+### **What is Object Destructuring?**
+Object destructuring is a convenient way to extract values from an object and store them in variables.
+
+Instead of accessing properties using dot notation:
+
+```javascript
+const course = {
+    coursename: "Js is love",
+    price: "999",
+    courseInstructor: "Nilesh"
+};
+
+console.log(course.coursename);  // "Js is love"
+console.log(course.price);        // "999"
+console.log(course.courseInstructor);  // "Nilesh"
+```
+
+We can **destructure** the object like this:
+
+```javascript
+const { coursename, price, courseInstructor } = course;
+
+console.log(coursename);  // "Js is love"
+console.log(price);        // "999"
+console.log(courseInstructor);  // "Nilesh"
+```
+
+---
+
+### **Example: Using Object Destructuring in an Array of Objects**
+When we have multiple objects inside an array, we can destructure them inside a loop or while mapping.
+
+```javascript
+const courses = [
+    {
+        coursename: "Js is love",
+        price: "999",
+        courseInstructor: "Nilesh"
+    },
+    {
+        coursename: "React Mastery",
+        price: "1499",
+        courseInstructor: "Sumit"
+    },
+    {
+        coursename: "Node.js Essentials",
+        price: "1299",
+        courseInstructor: "Aman"
+    }
+];
+
+// Destructuring inside a loop
+courses.forEach(({ coursename, price, courseInstructor }) => {
+    console.log(`Course: ${coursename}, Price: ${price}, Instructor: ${courseInstructor}`);
+});
+```
+
+**Output:**
+```
+Course: Js is love, Price: 999, Instructor: Nilesh
+Course: React Mastery, Price: 1499, Instructor: Sumit
+Course: Node.js Essentials, Price: 1299, Instructor: Aman
+```
+
+---
+
+### **Benefits of Object Destructuring**
+✅ **Cleaner Code:** Reduces redundant property access (`obj.property`).  
+✅ **Improves Readability:** Easy to understand and use.  
+✅ **Extracts Only What You Need:** No need to store the entire object in a variable.  
+
+---
+--------------------------------------------------------------------
+JS - 19 (Function)
+-------------------------------------------------------------------
+# **JavaScript - Functions & Rest Parameters (`...`)**
+
+## **1. Understanding the Code**
+### **Example: Function with Rest Parameter**
+```javascript
+function calculatePrice(...num1) {
+  return num1;
+}
+
+console.log(calculatePrice(3, 2, 3));
+```
+### **Output:**
+```
+[3, 2, 3]
+```
+
+---
+
+## **2. Key Concepts**
+### **A. Function Basics**
+- A function in JavaScript is a reusable block of code that performs a specific task.
+- It is declared using the `function` keyword.
+
+### **B. Rest Parameters (`...`)**
+- The `...` (spread/rest operator) **gathers multiple arguments** into an **array**.
+- In the above function, `...num1` collects all arguments passed into `calculatePrice()` and stores them in an array.
+
+---
+
+## **3. Explanation**
+```javascript
+function calculatePrice(...num1) {
+  return num1;  // num1 is an array
+}
+```
+- Here, `...num1` gathers all arguments passed into the function and stores them in `num1`.
+- The function then **returns** `num1`, which is an array.
+
+### **Example Execution**
+```javascript
+console.log(calculatePrice(3, 2, 3));
+```
+- `3, 2, 3` are passed as arguments.
+- The rest parameter (`...num1`) collects them into an array: `[3, 2, 3]`.
+- The function **returns** `[3, 2, 3]`.
+
+---
+
+## **4. Practical Use Case**
+Rest parameters are useful when a function needs to handle **an unknown number of arguments**.
+
+### **Example: Sum of All Numbers**
+```javascript
+function sumAll(...numbers) {
+  return numbers.reduce((acc, curr) => acc + curr, 0);
+}
+
+console.log(sumAll(10, 20, 30, 40)); // Output: 100
+```
+- The function accepts **any number of arguments**.
+- It **adds all numbers together** using `.reduce()`.
+
+---
+
+## **5. Key Takeaways**
+✅ **Rest Parameter (`...`) gathers multiple arguments into an array.**  
+✅ **Functions can handle flexible arguments dynamically.**  
+✅ **Useful for operations like summing numbers, merging values, or collecting user inputs.**  
+
+-----------------------------------------------------------------------------------
+JS - 21 (Global and local scope)
+----------------------------------------------------------------------------------
+
+# **JavaScript - Global and Local Scope**  
+
+## **1. What is Scope in JavaScript?**  
+Scope in JavaScript defines **where** variables and functions are accessible in your code. There are two main types:  
+
+1️⃣ **Global Scope** → Accessible anywhere in the script.  
+2️⃣ **Local Scope** → Accessible only inside a specific function or block.  
+
+---
+
+## **2. Global Scope**  
+A variable declared **outside** any function or block is **global** and can be accessed anywhere in the script.
+
+### **Example of Global Scope**  
+```javascript
+let globalVar = "I am a global variable";
+
+function printGlobal() {
+    console.log(globalVar); // Accessible inside function
+}
+
+printGlobal();  // Output: I am a global variable
+console.log(globalVar);  // Output: I am a global variable
+```
+
+📌 **Global variables can be accessed from anywhere in the script!**  
+
+---
+
+## **3. Local Scope (Function Scope)**  
+Variables declared **inside a function** are local to that function and **cannot be accessed outside**.
+
+### **Example of Local Scope**  
+```javascript
+function localExample() {
+    let localVar = "I am a local variable";
+    console.log(localVar);  // Output: I am a local variable
+}
+
+localExample();
+console.log(localVar);  // ❌ Error: localVar is not defined
+```
+
+📌 **Local variables exist only inside the function. They are destroyed after the function runs.**  
+
+---
+
+## **4. Block Scope (`let` & `const`)**  
+Variables declared with `let` or `const` inside `{}` **are restricted to that block**.
+
+### **Example of Block Scope**  
+```javascript
+{
+    let blockVar = "I exist only inside this block";
+    console.log(blockVar); // ✅ Works inside block
+}
+
+console.log(blockVar); // ❌ Error: blockVar is not defined
+```
+📌 **Block-scoped variables exist only within `{}` (if-else, loops, etc.).**  
+
+---
+
+## **5. Difference Between `var`, `let`, and `const` Scope**  
+
+| Variable Type | Scope Type | Can be Re-declared? | Block Scope? |
+|--------------|-----------|------------------|--------------|
+| `var`       | Function Scope | ✅ Yes  | ❌ No |
+| `let`       | Block Scope  | ❌ No | ✅ Yes |
+| `const`     | Block Scope  | ❌ No | ✅ Yes |
+
+### **Example of `var` vs `let` Scope**
+```javascript
+function testVar() {
+    if (true) {
+        var a = 10;  // Function-scoped
+        let b = 20;  // Block-scoped
+    }
+    console.log(a); // ✅ Works (var is function-scoped)
+    console.log(b); // ❌ Error (b is block-scoped)
+}
+
+testVar();
+```
+
+---
+
+## **6. Nested Scope (Lexical Scope)**
+Inner functions **can access** outer function variables.
+
+```javascript
+function outerFunction() {
+    let outerVar = "I'm outside!";
+
+    function innerFunction() {
+        console.log(outerVar); // ✅ Accessible inside
+    }
+
+    innerFunction();
+}
+
+outerFunction(); // Output: I'm outside!
+```
+📌 **Inner functions can access outer function variables, but not vice versa.**
+
+---
+
+## **7. Summary**  
+✅ **Global Scope:** Accessible anywhere.  
+✅ **Local Scope:** Exists only inside a function.  
+✅ **Block Scope (`let` & `const`)**: Exists only inside `{}`.  
+✅ **Nested Scope:** Inner functions can access outer variables.  
+✅ **Use `let` and `const` instead of `var`** to avoid accidental reassignments.
+
+---------------------------------------------------------------------------------
+JS - 22 (hoisting and closure)
+----------------------------------------------------------------------------------
+# **JavaScript - Hoisting and Closure**  
+
+## **1. Hoisting in JavaScript**  
+
+### **What is Hoisting?**  
+Hoisting is a JavaScript mechanism where **function and variable declarations are moved to the top of their scope** before the code executes.  
+
+---
+
+### **Example 1: Hoisting with `var`**
+```javascript
+console.log(a); // Output: undefined
+var a = 10;
+console.log(a); // Output: 10
+```
+📌 **Why?**  
+- JavaScript **hoists** the `var a;` declaration to the top but does **not** hoist its value.
+- So, `a` exists but is **undefined** before assignment.
+
+---
+
+### **Example 2: Hoisting with `let` and `const`**
+```javascript
+console.log(b); // ❌ Error: Cannot access 'b' before initialization
+let b = 20;
+```
+📌 **Why?**  
+- `let` and `const` are hoisted but are **not initialized**. They exist in a **Temporal Dead Zone (TDZ)** until assigned a value.
+
+---
+
+### **Example 3: Hoisting with Functions**
+```javascript
+greet(); // ✅ Works! Output: Hello!
+
+function greet() {
+    console.log("Hello!");
+}
+```
+📌 **Why?**  
+- **Function declarations** are fully hoisted, meaning the function can be called before it's defined.
+
+#### **Function Expressions are NOT Hoisted!**
+```javascript
+hello(); // ❌ Error: Cannot access 'hello' before initialization
+const hello = function() {
+    console.log("Hi!");
+};
+```
+📌 **Why?**  
+- **Function expressions (assigned to variables)** are hoisted but are in a **TDZ** like `let` and `const`.
+
+---
+
+## **2. Closures in JavaScript**  
+
+### **What is a Closure?**  
+A closure is a function that **remembers** the variables from its outer scope even after the outer function has finished executing.
+
+---
+
+### **Example 1: Simple Closure**
+```javascript
+function outerFunction() {
+    let outerVar = "I am from outer function";
+
+    function innerFunction() {
+        console.log(outerVar); // ✅ Can access outerVar
+    }
+
+    return innerFunction;
+}
+
+const myClosure = outerFunction(); 
+myClosure(); // Output: I am from outer function
+```
+📌 **Why?**  
+- `innerFunction` **remembers** `outerVar` even after `outerFunction` has finished execution.
+
+---
+
+### **Example 2: Real-World Closure - Counter**
+```javascript
+function createCounter() {
+    let count = 0; // Private variable
+
+    return function () {
+        count++;
+        console.log(count);
+    };
+}
+
+const counter = createCounter();
+counter(); // Output: 1
+counter(); // Output: 2
+counter(); // Output: 3
+```
+📌 **Why?**  
+- `count` is **not directly accessible**, but the returned function **remembers and modifies it**.
+
+---
+
+### **3. Key Differences Between Hoisting and Closure**
+| Feature  | Hoisting  | Closure  |
+|----------|----------|----------|
+| **Definition** | Moving variable & function declarations to the top of the scope | Functions remembering their outer scope |
+| **Example** | Accessing a variable before it's declared | Keeping data private in a function |
+| **Works With** | `var`, `let`, `const`, functions | Nested functions |
+
+---
+
+### **4. Summary**
+✅ **Hoisting** moves declarations to the top but does **not** hoist values.  
+✅ **Function declarations are hoisted, but function expressions are not.**  
+✅ **Closures allow functions to remember variables even after their parent function executes.**  
+✅ **Closures are useful for creating private variables and encapsulation.**  
+
+----------------------------------------------------------------------------------
+JS - 23 (this and arrow function)
+----------------------------------------------------------------------------------
+# **JavaScript - `this` and Arrow Functions**  
+
+## **1. Understanding `this` in JavaScript**  
+The `this` keyword refers to **the object that is currently executing the function**. However, its value depends on **how** the function is called.  
+
+### **1.1 `this` in Global Scope**  
+```javascript
+console.log(this); 
+// In a browser, `this` refers to the `window` object.
+// In Node.js, `this` refers to an empty object `{}`.
+```
+
+---
+
+### **1.2 `this` in an Object Method**  
+```javascript
+const person = {
+    name: "Nilesh",
+    greet: function () {
+        console.log(this.name); // Refers to 'person' object
+    }
+};
+
+person.greet(); // Output: Nilesh
+```
+📌 **Why?**  
+- Here, `this` refers to the `person` object because `greet` is called **on** `person`.
+
+---
+
+### **1.3 `this` in a Function (Default Binding - Global Scope)**
+```javascript
+function show() {
+    console.log(this);
+}
+show(); // In strict mode: `undefined`, Otherwise: `window` (in browsers)
+```
+📌 **Why?**  
+- In non-strict mode, `this` refers to the `window` object in browsers.
+- In strict mode (`"use strict";`), `this` is `undefined`.
+
+---
+
+### **1.4 `this` in a Constructor Function**
+```javascript
+function Car(name) {
+    this.name = name;
+}
+
+const myCar = new Car("Volkswagen");
+console.log(myCar.name); // Output: Volkswagen
+```
+📌 **Why?**  
+- `this` refers to the new object created by `new Car("Volkswagen")`.
+
+---
+
+### **1.5 `this` Inside an Event Listener**
+```javascript
+const button = document.querySelector("button");
+button.addEventListener("click", function () {
+    console.log(this); // `this` refers to the button element
+});
+```
+📌 **Why?**  
+- In an event listener, `this` refers to the element that triggered the event.
+
+---
+
+## **2. Arrow Functions and `this`**  
+Arrow functions behave **differently** with `this`. They do **not** bind their own `this` but inherit it from the surrounding scope.
+
+### **2.1 Arrow Function Inside an Object**
+```javascript
+const person = {
+    name: "Nilesh",
+    greet: () => {
+        console.log(this.name);
+    }
+};
+
+person.greet(); // Output: undefined
+```
+📌 **Why?**  
+- Arrow functions **do not** have their own `this`.  
+- `this` is inherited from the global scope (`window`), which has no `name` property.
+
+---
+
+### **2.2 Arrow Function Inside a Method**
+```javascript
+const person = {
+    name: "Nilesh",
+    greet: function () {
+        let sayHello = () => {
+            console.log(this.name); // ✅ Inherits `this` from `greet`
+        };
+        sayHello();
+    }
+};
+
+person.greet(); // Output: Nilesh
+```
+📌 **Why?**  
+- `sayHello` is an arrow function, so it **inherits `this` from `greet`**, which belongs to `person`.
+
+---
+
+### **2.3 Arrow Functions in Callbacks**
+```javascript
+const numbers = [1, 2, 3];
+numbers.forEach((num) => console.log(num)); // ✅ Works fine!
+```
+📌 **Why?**  
+- Arrow functions work well in callbacks as they don’t bind `this`.
+
+---
+
+## **3. Key Differences Between Regular Functions and Arrow Functions**
+| Feature | Regular Function | Arrow Function |
+|---------|----------------|---------------|
+| **`this` Binding** | Depends on how function is called | Inherits `this` from surrounding scope |
+| **Object Method** | `this` refers to the calling object | `this` refers to global scope (not the object) |
+| **Constructor Function** | Can be used as a constructor (`new` keyword) | ❌ Cannot be used as a constructor |
+| **Event Listeners** | `this` refers to the element | `this` refers to outer scope (not element) |
+
+---
+
+## **4. Summary**
+✅ **`this` refers to the object that calls the function.**  
+✅ **Arrow functions don’t have their own `this`; they inherit it from their surrounding scope.**  
+✅ **Use regular functions inside objects if `this` is needed.**  
+✅ **Use arrow functions for callbacks, promises, and `map`, `filter`, `reduce`.** 
+-----------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------

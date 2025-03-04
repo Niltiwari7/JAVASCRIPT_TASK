@@ -1296,10 +1296,71 @@ numbers.forEach((num) => console.log(num)); // ✅ Works fine!
 ---
 
 ## **4. Summary**
-✅ **`this` refers to the object that calls the function.**  
-✅ **Arrow functions don’t have their own `this`; they inherit it from their surrounding scope.**  
-✅ **Use regular functions inside objects if `this` is needed.**  
-✅ **Use arrow functions for callbacks, promises, and `map`, `filter`, `reduce`.** 
+
+- ✅ **`this` refers to the object that calls the function.**  
+- ✅ **Arrow functions don’t have their own `this`; they inherit it from their surrounding scope.**  
+- ✅ **Use regular functions inside objects if `this` is needed.**  
+- ✅ **Use arrow functions for callbacks, promises, and `map`, `filter`, `reduce`.** 
 -----------------------------------------------------------------------------------
+## IFFE
+------------------------------------------------------------------------------------
+An **Immediately Invoked Function Expression** (IIFE) is a JavaScript function that is defined and immediately executed. The syntax for an IIFE is as follows:
+
+### Syntax:
+```javascript
+(function() {
+    // Your code here
+})();
+```
+
+Or using an arrow function:
+
+```javascript
+(() => {
+    // Your code here
+})();
+```
+
+### Explanation:
+- The function is wrapped inside parentheses to make it an expression. Normally, JavaScript functions are declarations, but by wrapping them in parentheses, you turn them into an expression.
+- The trailing `()` immediately calls the function after it is defined.
+
+### Example:
+
+```javascript
+(function() {
+    console.log("This is an IIFE!");
+})();
+```
+
+Output:
+```
+This is an IIFE!
+```
+
+### Why use an IIFE?
+1. **Encapsulation**: The primary reason to use an IIFE is to create a **local scope** for variables. It helps avoid polluting the global namespace with variables that should only be accessible inside the function.
+  
+2. **Avoid conflicts**: If you're working with JavaScript libraries or scripts, using IIFEs prevents variables from accidentally overwriting or interfering with each other by keeping them in a private scope.
+
+### Example with variables:
+
+```javascript
+(function() {
+    var privateVar = "This is private";
+    console.log(privateVar);
+})();
+
+console.log(privateVar);  // Error: privateVar is not defined
+```
+
+In this example:
+- `privateVar` is only accessible inside the IIFE and cannot be accessed from the outside, helping to avoid conflicts in the global scope.
+
+### Modern use of IIFE:
+Although IIFEs were used frequently before the introduction of **`let`** and **`const`** (which help with block scoping), they are still a useful tool in JavaScript, especially for module patterns or managing scope in older code.
 
 ----------------------------------------------------------------------------------
+## DOM
+---------------------------------------------------------------------------------
+![image](https://github.com/user-attachments/assets/553faa5b-3152-453d-8dc4-7a2951613aea)
